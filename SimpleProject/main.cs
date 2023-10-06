@@ -16,10 +16,11 @@ namespace SimpleProject
     public partial class main : Form
     {
         private string _fileName = @".\patients.xml";
-        private string _dataMemberName = "Patient";
+        private PatientHelper _patientHelper;
         public main()
         {
             InitializeComponent();
+            _patientHelper = new PatientHelper(_fileName);
             GetInitialData();
         }
 
@@ -32,20 +33,19 @@ namespace SimpleProject
         }
         void GetInitialData()
         {
-            if (!File.Exists(_fileName))
-            {
-                PatientHelper.CreateXmlWithInitialData(_fileName, _dataMemberName);
-            }
+            _patientHelper.CreateInitialData();
             LoadData();
         }
         private void LoadData()
         {
-            DataSet dataSet = new DataSet();
-            dataSet.ReadXml(_fileName);
-
-            // Create a BindingSource and bind it to the DataTable
+            // Create a BindingSource
             BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = dataSet.Tables["Patient"];
+
+            // Get DataTable
+            DataTable dataTable = _patientHelper.GetData();
+
+            // Bind BindingSource to the DataTable
+            bindingSource.DataSource = dataTable;
 
             _dataGridView.AutoGenerateColumns = false;
 
@@ -59,14 +59,19 @@ namespace SimpleProject
             _dataGridView.Columns["RoomNo"].DataPropertyName = "RoomNo";
             _dataGridView.Columns["HomeAdress"].DataPropertyName = "HomeAdress";
 
-            _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _dataGridView.Columns["FirstName"].Width = 100;
+            _dataGridView.Columns["LastName"].Width = 100;
+            _dataGridView.Columns["Birthday"].Width = 150;
+            _dataGridView.Columns["RoomNo"].Width = 120;
 
         }
 
         private void SaveData()
         {
-            DataSet dataSet = (DataSet)_dataGridView.DataSource;
-            dataSet.WriteXml(_fileName);
+            BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;
+            DataTable dataTable = (DataTable)bindingSource.DataSource;
+            _patientHelper.SaveData(dataTable);
         }
         private void _toolStripButton_Save_Click(object sender, EventArgs e)
         {

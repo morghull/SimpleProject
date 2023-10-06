@@ -11,7 +11,71 @@ namespace SimpleProject.Helpers
 {
     public class PatientHelper
     {
+        private string _xmlFileName;
+        public PatientHelper(string xmlFileName)
+        {
+            _xmlFileName = xmlFileName;
+        }
+        public void CreateInitialData()
+        {
+            if (!File.Exists(_xmlFileName))
+            {
+                List<Patient> initialPatients = PatientHelper.GetInitialPatientsList();
 
+                DataTable dataTable = CreateDataTableFromPatientList(initialPatients);
+
+                SaveToXml(dataTable);
+            }
+        }
+        public DataTable GetData()
+        {
+            List<Patient> patients = ReadFromXml();
+
+            // Create DataTable to store patient data
+            DataTable dataTable = CreateDataTableFromPatientList(patients);
+
+            return dataTable;
+        }
+        public void SaveData(DataTable dataTable)
+        {
+            SaveToXml(dataTable);
+        }
+
+        private List<Patient> ReadFromXml()
+        {
+            PatientsXmlReader xmlReader = new PatientsXmlReader();
+            return xmlReader.Read(_xmlFileName);
+        }
+        private void SaveToXml(DataTable dataTable)
+        {
+            // Create a DataSet and DataTable to store patient data
+            DataSet dataSet = new DataSet("Patients");
+
+            // Add the DataTable to the DataSet
+            dataSet.Tables.Add(dataTable);
+
+            dataSet.WriteXml(_xmlFileName);
+        }
+        private DataTable CreateDataTableFromPatientList(List<Patient> patients)
+        {
+            // Create DataTable to store patient data
+            DataTable dataTable = new DataTable("Patient");
+
+            // Define the columns for the DataTable
+            dataTable.Columns.Add("FirstName", typeof(string));
+            dataTable.Columns.Add("LastName", typeof(string));
+            dataTable.Columns.Add("Birthday", typeof(DateTime));
+            dataTable.Columns.Add("RoomNo", typeof(int));
+            dataTable.Columns.Add("HomeAdress", typeof(string));
+
+            // Add rows to the DataTable from the list of patients
+            foreach (var patient in patients)
+            {
+                dataTable.Rows.Add(patient.FirstName, patient.LastName, patient.Birthday, patient.RoomNo, patient.HomeAdress);
+            }
+
+            return dataTable;
+        }
         private static List<Patient> GetInitialPatientsList()
         {
             List<Patient> patients = new List<Patient>();
@@ -35,32 +99,6 @@ namespace SimpleProject.Helpers
             patients.Add(new Patient("Lucas", "Hannah", new DateTime(1989, 12, 30), 209, "111 Elm St, Riversville, USA"));
 
             return patients;
-        }
-        public static void CreateXmlWithInitialData(string fileName, string dataMemerName)
-        {
-            var initialPatients = PatientHelper.GetInitialPatientsList();
-
-            // Create a DataSet and DataTable to store patient data
-            DataSet dataSet = new DataSet("Patients");
-            DataTable dataTable = new DataTable(dataMemerName);
-
-            // Define the columns for the DataTable
-            dataTable.Columns.Add("FirstName", typeof(string));
-            dataTable.Columns.Add("LastName", typeof(string));
-            dataTable.Columns.Add("Birthday", typeof(DateTime));
-            dataTable.Columns.Add("RoomNo", typeof(int));
-            dataTable.Columns.Add("HomeAdress", typeof(string));
-
-            // Add rows to the DataTable from the list of patients
-            foreach (var patient in initialPatients)
-            {
-                dataTable.Rows.Add(patient.FirstName, patient.LastName, patient.Birthday, patient.RoomNo, patient.HomeAdress);
-            }
-
-            // Add the DataTable to the DataSet
-            dataSet.Tables.Add(dataTable);
-
-            dataSet.WriteXml(fileName);
         }
     }
 }

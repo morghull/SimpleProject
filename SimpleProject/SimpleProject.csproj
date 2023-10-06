@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DataObjects\Patient.cs" />
     <Compile Include="Helpers\PatientHelper.cs" />
+    <Compile Include="Helpers\PatientsXmlReader.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>

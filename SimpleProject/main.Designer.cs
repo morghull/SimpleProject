@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._toolStripButton_Add = new System.Windows.Forms.ToolStripButton();
@@ -177,6 +178,8 @@
             // 
             // Birthday
             // 
+            dataGridViewCellStyle1.NullValue = null;
+            this.Birthday.DefaultCellStyle = dataGridViewCellStyle1;
             this.Birthday.HeaderText = "Дата народження";
             this.Birthday.Name = "Birthday";
             // 

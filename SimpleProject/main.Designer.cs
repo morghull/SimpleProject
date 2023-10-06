@@ -82,7 +82,7 @@
             this._toolStripButton_Add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Add.Name = "_toolStripButton_Add";
             this._toolStripButton_Add.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Add.Text = "toolStripButton1";
+            this._toolStripButton_Add.Text = "Додати";
             this._toolStripButton_Add.ToolTipText = "Додати";
             this._toolStripButton_Add.Click += new System.EventHandler(this._toolStripButton_Add_Click);
             // 
@@ -93,7 +93,7 @@
             this._toolStripButton_Edit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Edit.Name = "_toolStripButton_Edit";
             this._toolStripButton_Edit.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Edit.Text = "toolStripButton1";
+            this._toolStripButton_Edit.Text = "Редагувати";
             this._toolStripButton_Edit.ToolTipText = "Редагувати";
             this._toolStripButton_Edit.Click += new System.EventHandler(this._toolStripButton_Edit_Click);
             // 
@@ -104,7 +104,7 @@
             this._toolStripButton_Delete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Delete.Name = "_toolStripButton_Delete";
             this._toolStripButton_Delete.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Delete.Text = "toolStripButton2";
+            this._toolStripButton_Delete.Text = "Видалити";
             this._toolStripButton_Delete.ToolTipText = "Видалити";
             this._toolStripButton_Delete.Click += new System.EventHandler(this._toolStripButton_Delete_Click);
             // 
@@ -120,7 +120,8 @@
             this._toolStripButton_Save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Save.Name = "_toolStripButton_Save";
             this._toolStripButton_Save.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Save.Text = "toolStripButton1";
+            this._toolStripButton_Save.Text = "Зберегти";
+            this._toolStripButton_Save.ToolTipText = "Зберегти";
             this._toolStripButton_Save.Click += new System.EventHandler(this._toolStripButton_Save_Click);
             // 
             // _toolStripButton_Load
@@ -130,7 +131,8 @@
             this._toolStripButton_Load.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Load.Name = "_toolStripButton_Load";
             this._toolStripButton_Load.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Load.Text = "toolStripButton1";
+            this._toolStripButton_Load.Text = "Оновити";
+            this._toolStripButton_Load.ToolTipText = "Оновити";
             this._toolStripButton_Load.Click += new System.EventHandler(this._toolStripButton_Load_Click);
             // 
             // toolStripSeparator2
@@ -145,7 +147,7 @@
             this._toolStripButton_Exit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Exit.Name = "_toolStripButton_Exit";
             this._toolStripButton_Exit.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Exit.Text = "toolStripButton1";
+            this._toolStripButton_Exit.Text = "Вихід";
             this._toolStripButton_Exit.ToolTipText = "Вихід";
             this._toolStripButton_Exit.Click += new System.EventHandler(this._toolStripButton_Exit_Click);
             // 

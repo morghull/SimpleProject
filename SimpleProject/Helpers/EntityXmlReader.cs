@@ -8,11 +8,11 @@ using System.Xml;
 
 namespace SimpleProject.Helpers
 {
-    class PatientsXmlReader
+    class EntityXmlReader
     {
-        public List<Patient> Read(string fileName)
+        public List<Entity> Read(string fileName)
         {
-            List<Patient> patients = new List<Patient>();
+            List<Entity> patients = new List<Entity>();
             try
             {
                 // Create an XmlReader for the XML file
@@ -26,7 +26,7 @@ namespace SimpleProject.Helpers
 
                     foreach (XmlNode patientNode in patientNodes)
                     {
-                        Patient patient = new Patient();
+                        Entity patient = new Entity();
                         foreach (XmlNode patientAttributeNode in patientNode.ChildNodes)
                         {
                             if (patientAttributeNode.Name == "FirstName")

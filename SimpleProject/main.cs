@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,11 +17,23 @@ namespace SimpleProject
     public partial class main : Form
     {
         private string _fileName = @".\patients.xml";
-        private PatientHelper _patientHelper;
+        private EntityHelper _entityHelper;
         public main()
         {
             InitializeComponent();
-            _patientHelper = new PatientHelper(_fileName);
+            EntitySettings entitySettings = new EntitySettings("Patient");
+
+            // Use reflection to get the property names
+            Type entityType = typeof(Entity);
+            PropertyInfo[] properties = entityType.GetProperties();
+
+            // Extract and print the property names
+            foreach (PropertyInfo property in properties)
+            {
+                entitySettings.EntityPropreties.Add(property.Name, property.PropertyType);
+            }
+
+            _entityHelper = new EntityHelper(entitySettings, _fileName);
             GetInitialData();
         }
 
@@ -33,7 +46,7 @@ namespace SimpleProject
         }
         void GetInitialData()
         {
-            _patientHelper.CreateInitialData();
+            _entityHelper.CreateInitialData();
             LoadData();
         }
         private void LoadData()
@@ -42,12 +55,16 @@ namespace SimpleProject
             BindingSource bindingSource = new BindingSource();
 
             // Get DataTable
-            DataTable dataTable = _patientHelper.GetData();
+            DataTable dataTable = _entityHelper.GetData();
 
             // Bind BindingSource to the DataTable
             bindingSource.DataSource = dataTable;
 
+            // Torn off autogeneration of columns for DataGridView. We have predefined
             _dataGridView.AutoGenerateColumns = false;
+
+            // Set the DataGridView selection mode to FullRowSelect
+            _dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Bind the DataGridView to the BindingSource
             _dataGridView.DataSource = bindingSource;
@@ -65,13 +82,22 @@ namespace SimpleProject
             _dataGridView.Columns["Birthday"].Width = 150;
             _dataGridView.Columns["RoomNo"].Width = 120;
 
+            _dataGridView.RowPrePaint += (sender, e) =>
+            {
+                if (e.RowIndex % 2 == 1) // Odd row
+                {
+                    // Set the background color for odd rows
+                    _dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+            };
+
         }
 
         private void SaveData()
         {
             BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;
             DataTable dataTable = (DataTable)bindingSource.DataSource;
-            _patientHelper.SaveData(dataTable);
+            _entityHelper.SaveData(dataTable);
         }
         private void _toolStripButton_Save_Click(object sender, EventArgs e)
         {

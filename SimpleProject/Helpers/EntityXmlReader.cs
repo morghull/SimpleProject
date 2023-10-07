@@ -1,46 +1,35 @@
-﻿using SimpleProject.DataObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace SimpleProject.Helpers
 {
-    class EntityXmlReader
+    public class EntityXmlReader<T> where T : new()
     {
-        public List<Entity> Read(string fileName)
+        public List<T> Read(string fileName)
         {
-            List<Entity> patients = new List<Entity>();
+            List<T> entities = new List<T>();
             try
             {
-                // Create an XmlReader for the XML file
                 using (XmlReader xmlReader = XmlReader.Create(fileName))
                 {
                     xmlReader.Read();
                     XmlDocument xmlDocument = new XmlDocument();
                     xmlDocument.Load(xmlReader);
 
-                    XmlNode patientNodes = xmlDocument.DocumentElement;
+                    XmlNode entityNodes = xmlDocument.DocumentElement;
 
-                    foreach (XmlNode patientNode in patientNodes)
+                    foreach (XmlNode entityNode in entityNodes)
                     {
-                        Entity patient = new Entity();
-                        foreach (XmlNode patientAttributeNode in patientNode.ChildNodes)
+                        T entity = new T();
+                        foreach (XmlNode entityAttributeNode in entityNode.ChildNodes)
                         {
-                            if (patientAttributeNode.Name == "FirstName")
-                                patient.FirstName = patientAttributeNode.InnerText;
-                            else if (patientAttributeNode.Name == "LastName")
-                                patient.LastName = patientAttributeNode.InnerText;
-                            else if (patientAttributeNode.Name == "Birthday")
-                                patient.Birthday = DateTime.Parse(patientAttributeNode.InnerText);
-                            else if (patientAttributeNode.Name == "RoomNo")
-                                patient.RoomNo = int.Parse(patientAttributeNode.InnerText);
-                            else if (patientAttributeNode.Name == "HomeAdress")
-                                patient.HomeAdress = patientAttributeNode.InnerText;
+                            string propertyName = entityAttributeNode.Name;
+                            string propertyValue = entityAttributeNode.InnerText;
+
+                            SetProperty(entity, propertyName, propertyValue);
                         }
-                        patients.Add(patient);
+                        entities.Add(entity);
                     }
                 }
             }
@@ -48,7 +37,18 @@ namespace SimpleProject.Helpers
             {
                 Console.WriteLine(String.Format("An error occurred: {0}", ex.Message));
             }
-            return patients;
+            return entities;
+        }
+        private void SetProperty(T entity, string propertyName, string propertyValue)
+        {
+            var propertyInfo = typeof(T).GetProperty(propertyName);
+
+            if (propertyInfo != null)
+            {
+                Type propertyType = propertyInfo.PropertyType;
+                object typedValue = Convert.ChangeType(propertyValue, propertyType);
+                propertyInfo.SetValue(entity, typedValue);
+            }
         }
     }
 }

@@ -11,30 +11,35 @@ namespace SimpleProject
 {
     public partial class main : Form
     {
-        private EntityHelper _entityHelper;
-        EntitySettings _entitySettings;
+        private EntitySettings<Entity> _entitySettings;
+        private EntityHelper<Entity> _entityHelper;
         public main()
         {
             InitializeComponent();
-            _entitySettings = new EntitySettings("Patient");
+            _entitySettings = new EntitySettings<Entity>();
+            PatiensDataInitializer dataInitializer = new PatiensDataInitializer();
+            _entityHelper = new EntityHelper<Entity>(_entitySettings, dataInitializer);
 
-            // Use reflection to get the property names
-            Type entityType = typeof(Entity);
-            PropertyInfo[] properties = entityType.GetProperties();
+            _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _dataGridView.AutoGenerateColumns = false;
+            _dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _dataGridView.ReadOnly = true;
+            _dataGridView.AllowUserToAddRows = false;
+            _dataGridView.RowHeadersVisible = false;
+            _dataGridView.AllowUserToResizeRows = false;
+            _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
 
-            // Extract and print the property names
-            foreach (PropertyInfo property in properties)
-            {
-                _entitySettings.EntityPropreties.Add(property.Name, property.PropertyType);
-            }
-
-            _entityHelper = new EntityHelper(_entitySettings);
             GetInitialData();
         }
-
         private void _toolStripButton_Exit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this.ParentForm, "Ви дійсно бажаєте завершити роботу з програмою?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(
+                    this.ParentForm,
+                    "Ви дійсно бажаєте завершити роботу з програмою?",
+                    Application.ProductName,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                ) == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -46,45 +51,22 @@ namespace SimpleProject
         }
         private void LoadData()
         {
-            // Create a BindingSource
             BindingSource bindingSource = new BindingSource();
-
-            // Get DataTable
             DataTable dataTable = _entityHelper.GetData();
 
-            // Bind BindingSource to the DataTable
             bindingSource.DataSource = dataTable;
 
-            // Torn off autogeneration of columns for DataGridView. We have predefined
-            _dataGridView.AutoGenerateColumns = false;
-
-            // Set the DataGridView selection mode to FullRowSelect
-            _dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Bind the DataGridView to the BindingSource
             _dataGridView.DataSource = bindingSource;
 
-            // Manually map DataGridView columns to DataTable columns
-            foreach (var property in _entitySettings.EntityPropreties)
+            foreach (var propertyName in _entitySettings.PropertiesNames)
             {
-                _dataGridView.Columns[property.Key].DataPropertyName = property.Key;
+                _dataGridView.Columns[propertyName].DataPropertyName = propertyName;
             }
 
-            _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dataGridView.Columns[0].Width = 100;
             _dataGridView.Columns[1].Width = 100;
             _dataGridView.Columns[2].Width = 150;
             _dataGridView.Columns[3].Width = 120;
-
-            _dataGridView.RowPrePaint += (sender, e) =>
-            {
-                if (e.RowIndex % 2 == 1) // Odd row
-                {
-                    // Set the background color for odd rows
-                    _dataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
-                }
-            };
-
         }
         private void SaveData()
         {
@@ -110,7 +92,12 @@ namespace SimpleProject
         }
         private void _toolStripButton_Delete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this.ParentForm, "Ви дійсно бажаєте видалити обрані рядки?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(this.ParentForm,
+                    "Ви дійсно бажаєте видалити обрані рядки?",
+                    Application.ProductName,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                ) == DialogResult.Yes)
             {
                 HashSet<int> uniqueRowIndexes = new HashSet<int>();
                 foreach (DataGridViewCell cell in _dataGridView.SelectedCells)

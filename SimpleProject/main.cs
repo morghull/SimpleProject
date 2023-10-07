@@ -36,13 +36,20 @@ namespace SimpleProject
             _dataGridView.RowHeadersVisible = false;
             _dataGridView.AllowUserToResizeRows = false;
             _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
+            if (_entitySettings.PropertiesTitles.Count == _entitySettings.PropertiesNames.Count)
             {
-                _dataGridView.Columns.Add(
-                    new DataGridViewTextBoxColumn() { 
-                        Name = _entitySettings.PropertiesNames[i],
-                        HeaderText = _entitySettings.PropertiesTitles[i]
-                    });
+                for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
+                {
+                    _dataGridView.Columns.Add(
+                        new DataGridViewTextBoxColumn()
+                        {
+                            Name = _entitySettings.PropertiesNames[i],
+                            HeaderText = _entitySettings.PropertiesTitles[i]
+                        });
+                }
+            }
+            else {
+                throw new Exception("Some issue with user defined settings. Check your code");
             }
 
             GetInitialData();

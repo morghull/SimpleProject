@@ -28,6 +28,11 @@ namespace SimpleProject
             PatiensDataInitializer dataInitializer = new PatiensDataInitializer();
             _entityHelper = new EntityHelper<Patient>(_entitySettings, dataInitializer);
 
+            DataGridViewSetup();
+            GetInitialData();
+        }
+        private void DataGridViewSetup()
+        {
             _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dataGridView.AutoGenerateColumns = false;
             _dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -40,34 +45,27 @@ namespace SimpleProject
             {
                 for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
                 {
+                    string propertyName = _entitySettings.PropertiesNames[i];
+                    string propertyTitle = _entitySettings.PropertiesTitles[i];
+                    Type propertyType = _entitySettings.PropretiesTypes[propertyName];
+                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                    cellStyle.Format = (propertyType == typeof(DateTime)) ? "d" : "";
+
                     _dataGridView.Columns.Add(
                         new DataGridViewTextBoxColumn()
                         {
-                            Name = _entitySettings.PropertiesNames[i],
-                            HeaderText = _entitySettings.PropertiesTitles[i]
+                            Name = propertyName,
+                            HeaderText = propertyTitle,
+                            DefaultCellStyle = cellStyle
                         });
                 }
             }
-            else {
+            else
+            {
                 throw new Exception("Some issue with user defined settings. Check your code");
             }
-
-            GetInitialData();
         }
-        private void _toolStripButton_Exit_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(
-                    this.ParentForm,
-                    "Ви дійсно бажаєте завершити роботу з програмою?",
-                    Application.ProductName,
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                ) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-        void GetInitialData()
+        private void GetInitialData()
         {
             _entityHelper.CreateInitialData();
             LoadData();
@@ -131,6 +129,19 @@ namespace SimpleProject
                 {
                     _dataGridView.Rows.RemoveAt(rowIndex);
                 }
+            }
+        }
+        private void _toolStripButton_Exit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(
+                    this.ParentForm,
+                    "Ви дійсно бажаєте завершити роботу з програмою?",
+                    Application.ProductName,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                ) == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }

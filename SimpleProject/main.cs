@@ -11,12 +11,12 @@ namespace SimpleProject
 {
     public partial class main : Form
     {
-        private string _fileName = @".\patients.xml";
         private EntityHelper _entityHelper;
+        EntitySettings _entitySettings;
         public main()
         {
             InitializeComponent();
-            EntitySettings entitySettings = new EntitySettings("Patient");
+            _entitySettings = new EntitySettings("Patient");
 
             // Use reflection to get the property names
             Type entityType = typeof(Entity);
@@ -25,10 +25,10 @@ namespace SimpleProject
             // Extract and print the property names
             foreach (PropertyInfo property in properties)
             {
-                entitySettings.EntityPropreties.Add(property.Name, property.PropertyType);
+                _entitySettings.EntityPropreties.Add(property.Name, property.PropertyType);
             }
 
-            _entityHelper = new EntityHelper(entitySettings, _fileName);
+            _entityHelper = new EntityHelper(_entitySettings);
             GetInitialData();
         }
 
@@ -65,17 +65,16 @@ namespace SimpleProject
             _dataGridView.DataSource = bindingSource;
 
             // Manually map DataGridView columns to DataTable columns
-            _dataGridView.Columns["FirstName"].DataPropertyName = "FirstName";
-            _dataGridView.Columns["LastName"].DataPropertyName = "LastName";
-            _dataGridView.Columns["Birthday"].DataPropertyName = "Birthday";
-            _dataGridView.Columns["RoomNo"].DataPropertyName = "RoomNo";
-            _dataGridView.Columns["HomeAdress"].DataPropertyName = "HomeAdress";
+            foreach (var property in _entitySettings.EntityPropreties)
+            {
+                _dataGridView.Columns[property.Key].DataPropertyName = property.Key;
+            }
 
             _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            _dataGridView.Columns["FirstName"].Width = 100;
-            _dataGridView.Columns["LastName"].Width = 100;
-            _dataGridView.Columns["Birthday"].Width = 150;
-            _dataGridView.Columns["RoomNo"].Width = 120;
+            _dataGridView.Columns[0].Width = 100;
+            _dataGridView.Columns[1].Width = 100;
+            _dataGridView.Columns[2].Width = 150;
+            _dataGridView.Columns[3].Width = 120;
 
             _dataGridView.RowPrePaint += (sender, e) =>
             {
@@ -87,7 +86,6 @@ namespace SimpleProject
             };
 
         }
-
         private void SaveData()
         {
             BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;

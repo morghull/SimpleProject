@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SimpleProject
 {
@@ -17,6 +18,13 @@ namespace SimpleProject
         {
             InitializeComponent();
             _entitySettings = new EntitySettings<Patient>();
+            _entitySettings.PropertiesTitles = new List<string>() {
+                "Ім'я",
+                "Прізвище",
+                "Дата народження",
+                "Номер палати",
+                "Домашня адреса"
+            };
             PatiensDataInitializer dataInitializer = new PatiensDataInitializer();
             _entityHelper = new EntityHelper<Patient>(_entitySettings, dataInitializer);
 
@@ -28,6 +36,14 @@ namespace SimpleProject
             _dataGridView.RowHeadersVisible = false;
             _dataGridView.AllowUserToResizeRows = false;
             _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
+            {
+                _dataGridView.Columns.Add(
+                    new DataGridViewTextBoxColumn() { 
+                        Name = _entitySettings.PropertiesNames[i],
+                        HeaderText = _entitySettings.PropertiesTitles[i]
+                    });
+            }
 
             GetInitialData();
         }

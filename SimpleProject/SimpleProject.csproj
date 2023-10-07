@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataObjects\Entity.cs" />
+    <Compile Include="DataObjects\Patient.cs" />
     <Compile Include="Helpers\EntityHelper.cs" />
     <Compile Include="Helpers\EntitySettings.cs" />
     <Compile Include="Helpers\EntityXmlReader.cs" />

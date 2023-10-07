@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._toolStripButton_Add = new System.Windows.Forms.ToolStripButton();
@@ -40,11 +39,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._toolStripButton_Exit = new System.Windows.Forms.ToolStripButton();
             this._dataGridView = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HomeAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -157,55 +151,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.FirstName,
-            this.LastName,
-            this.Birthday,
-            this.RoomNo,
-            this.HomeAdress});
             this._dataGridView.Location = new System.Drawing.Point(16, 55);
             this._dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.RowHeadersWidth = 51;
             this._dataGridView.Size = new System.Drawing.Size(1013, 533);
             this._dataGridView.TabIndex = 2;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "Ім\'я";
-            this.FirstName.MinimumWidth = 6;
-            this.FirstName.Name = "FirstName";
-            this.FirstName.Width = 125;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "Прізвище";
-            this.LastName.MinimumWidth = 6;
-            this.LastName.Name = "LastName";
-            this.LastName.Width = 125;
-            // 
-            // Birthday
-            // 
-            dataGridViewCellStyle1.NullValue = null;
-            this.Birthday.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Birthday.HeaderText = "Дата народження";
-            this.Birthday.MinimumWidth = 6;
-            this.Birthday.Name = "Birthday";
-            this.Birthday.Width = 125;
-            // 
-            // RoomNo
-            // 
-            this.RoomNo.HeaderText = "Номер палати";
-            this.RoomNo.MinimumWidth = 6;
-            this.RoomNo.Name = "RoomNo";
-            this.RoomNo.Width = 125;
-            // 
-            // HomeAdress
-            // 
-            this.HomeAdress.HeaderText = "Домашня адресса";
-            this.HomeAdress.MinimumWidth = 6;
-            this.HomeAdress.Name = "HomeAdress";
-            this.HomeAdress.Width = 125;
             // 
             // main
             // 
@@ -237,11 +188,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _toolStripButton_Save;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HomeAdress;
     }
 }
 

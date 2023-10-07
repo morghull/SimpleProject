@@ -11,6 +11,7 @@ namespace SimpleProject.Helpers
         public string XmlFilePath { get; set; }
         public Dictionary<string, Type> PropretiesTypes { get; set; }
         public List<string> PropertiesNames { get; set; }
+        public List<string> PropertiesTitles { get; set; }
         public EntitySettings()
         {
             Type entityType = typeof(T);

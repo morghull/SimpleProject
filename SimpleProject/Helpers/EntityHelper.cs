@@ -10,7 +10,7 @@ namespace SimpleProject.Helpers
     {
         private EntitySettings _entitySettings;
 
-        public EntityHelper(EntitySettings entitySettings, string xmlFileName)
+        public EntityHelper(EntitySettings entitySettings)
         {
             _entitySettings = entitySettings;
         }

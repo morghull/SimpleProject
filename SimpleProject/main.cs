@@ -11,14 +11,14 @@ namespace SimpleProject
 {
     public partial class main : Form
     {
-        private EntitySettings<Entity> _entitySettings;
-        private EntityHelper<Entity> _entityHelper;
+        private EntitySettings<Patient> _entitySettings;
+        private EntityHelper<Patient> _entityHelper;
         public main()
         {
             InitializeComponent();
-            _entitySettings = new EntitySettings<Entity>();
+            _entitySettings = new EntitySettings<Patient>();
             PatiensDataInitializer dataInitializer = new PatiensDataInitializer();
-            _entityHelper = new EntityHelper<Entity>(_entitySettings, dataInitializer);
+            _entityHelper = new EntityHelper<Patient>(_entitySettings, dataInitializer);
 
             _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dataGridView.AutoGenerateColumns = false;

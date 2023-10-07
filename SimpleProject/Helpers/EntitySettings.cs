@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleProject.Helpers
 {
@@ -17,6 +13,7 @@ namespace SimpleProject.Helpers
         {
             EntityName = entityName;
             EntityPluralName = NounHelper.GetPluralForm(entityName);
+            XmlFilePath = String.Format(@"./{0}.xml", EntityPluralName);
             EntityPropreties = new Dictionary<string, Type>();
         }
     }

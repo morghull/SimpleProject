@@ -1,5 +1,4 @@
-﻿using SimpleProject.DataObjects;
-using SimpleProject.Interfaces;
+﻿using SimpleProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;

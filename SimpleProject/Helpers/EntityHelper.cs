@@ -9,16 +9,14 @@ namespace SimpleProject.Helpers
     public class EntityHelper
     {
         private EntitySettings _entitySettings;
-        private string _xmlFileName;
 
         public EntityHelper(EntitySettings entitySettings, string xmlFileName)
         {
             _entitySettings = entitySettings;
-            _xmlFileName = xmlFileName;
         }
         public void CreateInitialData()
         {
-            if (!File.Exists(_xmlFileName))
+            if (!File.Exists(_entitySettings.XmlFilePath))
             {
                 List<Entity> initialEntities = EntityHelper.GetInitialEntitiesList();
 
@@ -29,10 +27,10 @@ namespace SimpleProject.Helpers
         }
         public DataTable GetData()
         {
-            List<Entity> patients = ReadFromXml();
+            List<Entity> entities = ReadFromXml();
 
             // Create DataTable to store patient data
-            DataTable dataTable = CreateDataTableFromEntitiesList(patients);
+            DataTable dataTable = CreateDataTableFromEntitiesList(entities);
 
             return dataTable;
         }
@@ -44,29 +42,28 @@ namespace SimpleProject.Helpers
         private List<Entity> ReadFromXml()
         {
             EntityXmlReader xmlReader = new EntityXmlReader();
-            return xmlReader.Read(_xmlFileName);
+            return xmlReader.Read(_entitySettings.XmlFilePath);
         }
         private void SaveToXml(DataTable dataTable)
         {
             // Create a DataSet and DataTable to store patient data
-            DataSet dataSet = new DataSet("Patients");
+            DataSet dataSet = new DataSet(_entitySettings.EntityPluralName);
 
             // Add the DataTable to the DataSet
             dataSet.Tables.Add(dataTable);
 
-            dataSet.WriteXml(_xmlFileName);
+            dataSet.WriteXml(_entitySettings.XmlFilePath);
         }
         private DataTable CreateDataTableFromEntitiesList(List<Entity> patients)
         {
             // Create DataTable to store patient data
-            DataTable dataTable = new DataTable("Patient");
+            DataTable dataTable = new DataTable(_entitySettings.EntityName);
 
             // Define the columns for the DataTable
-            dataTable.Columns.Add("FirstName", typeof(string));
-            dataTable.Columns.Add("LastName", typeof(string));
-            dataTable.Columns.Add("Birthday", typeof(DateTime));
-            dataTable.Columns.Add("RoomNo", typeof(int));
-            dataTable.Columns.Add("HomeAdress", typeof(string));
+            foreach (var property in _entitySettings.EntityPropreties)
+            {
+                dataTable.Columns.Add(property.Key, property.Value);
+            }
 
             // Add rows to the DataTable from the list of patients
             foreach (var patient in patients)

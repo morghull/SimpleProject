@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SimpleProject.Helpers
+{
+    public static class NounHelper
+    {
+        public static string GetPluralForm(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return word; // Return the original word if it's empty or null
+
+            // Check for some common pluralization rules
+            if (word.EndsWith("s") || word.EndsWith("x") || word.EndsWith("z") || word.EndsWith("ch") || word.EndsWith("sh"))
+            {
+                return word + "es"; // Add "es" for words ending in s, x, z, ch, sh
+            }
+            else if (word.EndsWith("y") && word.Length > 1 && !IsVowel(word[word.Length - 2]))
+            {
+                // Change "y" to "ies" for words ending in "y" and the preceding letter is not a vowel
+                return word.Substring(0, word.Length - 1) + "ies";
+            }
+            else
+            {
+                return word + "s"; // Add "s" for most other words
+            }
+        }
+        private static bool IsVowel(char c)
+        {
+            // Check if a character is a vowel (in this simple example, we consider 'y' as a consonant)
+            return "AEIOUaeiou".IndexOf(c) != -1;
+        }
+    }
+}

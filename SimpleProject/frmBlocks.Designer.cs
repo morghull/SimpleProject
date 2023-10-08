@@ -1,6 +1,6 @@
 ﻿namespace SimpleProject
 {
-    partial class Imagesform
+    partial class frmBlocks
     {
         /// <summary>
         /// Required designer variable.

@@ -14,14 +14,14 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
-    public partial class Imagesform : Form
+    public partial class frmBlocks : Form
     {
         private EntitySettings<Movie> _entitySettings;
         private EntityHelper<Movie> _entityHelper;
         private string directoryPath = @"./Images/";
 
         private Panel selectedPannel;
-        public Imagesform()
+        public frmBlocks()
         {
             InitializeComponent();
             _entitySettings = new EntitySettings<Movie>();

@@ -1,6 +1,6 @@
 ﻿namespace SimpleProject
 {
-    partial class Mains
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mains));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._toolStripButton_Add = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton_Edit = new System.Windows.Forms.ToolStripButton();

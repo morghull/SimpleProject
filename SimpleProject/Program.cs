@@ -16,7 +16,7 @@ namespace SimpleProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mains());
+            Application.Run(new Main());
             //Application.Run(new Imagesform());
         }
     }

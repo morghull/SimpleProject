@@ -8,21 +8,14 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
-    public partial class Main : Form
+    public partial class frmMain : Form
     {
         private EntitySettings<Patient> _entitySettings;
         private EntityHelper<Patient> _entityHelper;
-        public Main()
+        public frmMain()
         {
             InitializeComponent();
             _entitySettings = new EntitySettings<Patient>();
-            _entitySettings.PropertiesTitles = new List<string>() {
-                "Ім'я",
-                "Прізвище",
-                "Дата народження",
-                "Номер палати",
-                "Домашня адреса"
-            };
             PatiensDataInitializer dataInitializer = new PatiensDataInitializer();
             _entityHelper = new EntityHelper<Patient>(_entitySettings, dataInitializer);
 
@@ -44,7 +37,7 @@ namespace SimpleProject
                 for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
                 {
                     string propertyName = _entitySettings.PropertiesNames[i];
-                    string propertyTitle = _entitySettings.PropertiesTitles[i];
+                    string propertyTitle = _entitySettings.PropertiesTitles[propertyName];
                     Type propertyType = _entitySettings.PropretiesTypes[propertyName];
                     DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
                     cellStyle.Format = (propertyType == typeof(DateTime)) ? "d" : "";
@@ -103,7 +96,8 @@ namespace SimpleProject
         }
         private void _toolStripButton_Add_Click(object sender, EventArgs e)
         {
-            
+            frmSub subForm = new frmSub();
+            subForm.ShowDialog();
         }
         private void _toolStripButton_Edit_Click(object sender, EventArgs e)
         {

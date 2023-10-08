@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
-    public partial class Sub : Form
+    public partial class frmSub : Form
     {
-        public Sub()
+        public frmSub()
         {
             InitializeComponent();
         }

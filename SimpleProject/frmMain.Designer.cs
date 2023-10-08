@@ -1,6 +1,6 @@
 ﻿namespace SimpleProject
 {
-    partial class Main
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._toolStripButton_Add = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton_Edit = new System.Windows.Forms.ToolStripButton();
@@ -63,11 +63,11 @@
             this._toolStripButton_Exit});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this._toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
             this._toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._toolStrip.Size = new System.Drawing.Size(784, 31);
+            this._toolStrip.Size = new System.Drawing.Size(1045, 38);
             this._toolStrip.TabIndex = 1;
-            this._toolStrip.Text = "toolStrip1";
+            this._toolStrip.Text = "toolStrip";
             // 
             // _toolStripButton_Add
             // 
@@ -75,7 +75,7 @@
             this._toolStripButton_Add.Image = global::SimpleProject.Properties.Resources._24px_png_add;
             this._toolStripButton_Add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Add.Name = "_toolStripButton_Add";
-            this._toolStripButton_Add.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Add.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Add.Text = "Додати";
             this._toolStripButton_Add.ToolTipText = "Додати";
             this._toolStripButton_Add.Click += new System.EventHandler(this._toolStripButton_Add_Click);
@@ -86,7 +86,7 @@
             this._toolStripButton_Edit.Image = global::SimpleProject.Properties.Resources._24px_png_edit;
             this._toolStripButton_Edit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Edit.Name = "_toolStripButton_Edit";
-            this._toolStripButton_Edit.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Edit.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Edit.Text = "Редагувати";
             this._toolStripButton_Edit.ToolTipText = "Редагувати";
             this._toolStripButton_Edit.Click += new System.EventHandler(this._toolStripButton_Edit_Click);
@@ -97,7 +97,7 @@
             this._toolStripButton_Delete.Image = global::SimpleProject.Properties.Resources._24px_png_del;
             this._toolStripButton_Delete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Delete.Name = "_toolStripButton_Delete";
-            this._toolStripButton_Delete.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Delete.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Delete.Text = "Видалити";
             this._toolStripButton_Delete.ToolTipText = "Видалити";
             this._toolStripButton_Delete.Click += new System.EventHandler(this._toolStripButton_Delete_Click);
@@ -105,7 +105,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // _toolStripButton_Save
             // 
@@ -113,7 +113,7 @@
             this._toolStripButton_Save.Image = global::SimpleProject.Properties.Resources._24px_png_save;
             this._toolStripButton_Save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Save.Name = "_toolStripButton_Save";
-            this._toolStripButton_Save.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Save.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Save.Text = "Зберегти";
             this._toolStripButton_Save.ToolTipText = "Зберегти";
             this._toolStripButton_Save.Click += new System.EventHandler(this._toolStripButton_Save_Click);
@@ -124,7 +124,7 @@
             this._toolStripButton_Load.Image = global::SimpleProject.Properties.Resources._24px_png_replace;
             this._toolStripButton_Load.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Load.Name = "_toolStripButton_Load";
-            this._toolStripButton_Load.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Load.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Load.Text = "Оновити";
             this._toolStripButton_Load.ToolTipText = "Оновити";
             this._toolStripButton_Load.Click += new System.EventHandler(this._toolStripButton_Load_Click);
@@ -132,7 +132,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
             // _toolStripButton_Exit
             // 
@@ -140,7 +140,7 @@
             this._toolStripButton_Exit.Image = global::SimpleProject.Properties.Resources._24px_png_exit;
             this._toolStripButton_Exit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Exit.Name = "_toolStripButton_Exit";
-            this._toolStripButton_Exit.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Exit.Size = new System.Drawing.Size(29, 35);
             this._toolStripButton_Exit.Text = "Вихід";
             this._toolStripButton_Exit.ToolTipText = "Вихід";
             this._toolStripButton_Exit.Click += new System.EventHandler(this._toolStripButton_Exit_Click);
@@ -151,21 +151,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._dataGridView.Location = new System.Drawing.Point(12, 45);
+            this._dataGridView.Location = new System.Drawing.Point(16, 55);
+            this._dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._dataGridView.Name = "_dataGridView";
             this._dataGridView.RowHeadersWidth = 51;
-            this._dataGridView.Size = new System.Drawing.Size(760, 433);
+            this._dataGridView.Size = new System.Drawing.Size(1013, 533);
             this._dataGridView.TabIndex = 2;
             // 
-            // main
+            // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 490);
+            this.ClientSize = new System.Drawing.Size(1045, 603);
             this.Controls.Add(this._dataGridView);
             this.Controls.Add(this._toolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "main";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmMain";
             this.Text = "Головне вікно";
             this._toolStrip.ResumeLayout(false);
             this._toolStrip.PerformLayout();

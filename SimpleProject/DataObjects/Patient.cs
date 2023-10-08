@@ -10,7 +10,6 @@ namespace SimpleProject.DataObjects
         public int RoomNo { get; set; }
         public string HomeAdress { get; set; }
         public Patient() { }
-
         public Patient(string firstName, string lastName, DateTime birthday, int roomNo, string homeAdress)
         {
             FirstName = firstName;

@@ -24,12 +24,10 @@ namespace SimpleProject.Helpers
             {
                 List<T> initialEntities = _dataInitializer.GetInitialEntitiesList();
 
-                DataTable dataTable = CreateDataTableFromEntitiesList(initialEntities);
-
-                SaveToXml(dataTable);
+                SaveDataFromList(initialEntities);
             }
         }
-        public DataTable GetData()
+        public DataTable GetDataAsDataTable()
         {
             List<T> entities = ReadFromXml();
 
@@ -37,11 +35,19 @@ namespace SimpleProject.Helpers
 
             return dataTable;
         }
-        public void SaveData(DataTable dataTable)
+        public List<T> GetDataAsList()
+        {
+            return ReadFromXml();
+        }
+        public void SaveDataFromDataTale(DataTable dataTable)
         {
             SaveToXml(dataTable);
         }
-
+        public void SaveDataFromList(List<T> list)
+        {
+            DataTable dataTable = CreateDataTableFromEntitiesList(list);
+            SaveToXml(dataTable);
+        }
         private List<T> ReadFromXml()
         {
             EntityXmlReader<T> xmlReader = new EntityXmlReader<T>();

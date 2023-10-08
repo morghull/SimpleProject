@@ -71,7 +71,7 @@ namespace SimpleProject
         private void LoadData()
         {
             BindingSource bindingSource = new BindingSource();
-            DataTable dataTable = _entityHelper.GetData();
+            DataTable dataTable = _entityHelper.GetDataAsDataTable();
 
             bindingSource.DataSource = dataTable;
 
@@ -91,7 +91,7 @@ namespace SimpleProject
         {
             BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;
             DataTable dataTable = (DataTable)bindingSource.DataSource;
-            _entityHelper.SaveData(dataTable);
+            _entityHelper.SaveDataFromDataTale(dataTable);
         }
         private void _toolStripButton_Save_Click(object sender, EventArgs e)
         {

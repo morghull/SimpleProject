@@ -48,12 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataObjects\Movie.cs" />
     <Compile Include="DataObjects\Patient.cs" />
     <Compile Include="Helpers\EntityHelper.cs" />
     <Compile Include="Helpers\EntitySettings.cs" />
     <Compile Include="Helpers\EntityXmlReader.cs" />
+    <Compile Include="DataObjects\MoviesDataInitializer.cs" />
     <Compile Include="Helpers\NounHelper.cs" />
-    <Compile Include="Helpers\PatiensDataInitializer.cs" />
+    <Compile Include="DataObjects\PatiensDataInitializer.cs" />
+    <Compile Include="Imagesform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imagesform.Designer.cs">
+      <DependentUpon>Imagesform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IDataInitializer.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
@@ -63,6 +71,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Imagesform.resx">
+      <DependentUpon>Imagesform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>

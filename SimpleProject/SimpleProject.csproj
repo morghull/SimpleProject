@@ -56,32 +56,36 @@
     <Compile Include="DataObjects\MoviesDataInitializer.cs" />
     <Compile Include="Helpers\NounHelper.cs" />
     <Compile Include="DataObjects\PatiensDataInitializer.cs" />
-    <Compile Include="Imagesform.cs">
+    <Compile Include="frmBlocks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Imagesform.Designer.cs">
-      <DependentUpon>Imagesform.cs</DependentUpon>
+    <Compile Include="frmBlocks.Designer.cs">
+      <DependentUpon>frmBlocks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TitleAttribute.cs" />
     <Compile Include="Interfaces\IDataInitializer.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sub.cs">
+    <Compile Include="frmSub.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sub.Designer.cs">
-      <DependentUpon>Sub.cs</DependentUpon>
+    <Compile Include="frmSub.Designer.cs">
+      <DependentUpon>frmSub.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Imagesform.resx">
-      <DependentUpon>Imagesform.cs</DependentUpon>
+    <EmbeddedResource Include="frmBlocks.resx">
+      <DependentUpon>frmBlocks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSub.resx">
+      <DependentUpon>frmSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

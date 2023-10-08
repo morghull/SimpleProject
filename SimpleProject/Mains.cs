@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
-    public partial class Main : Form
+    public partial class Mains : Form
     {
         private EntitySettings<Patient> _entitySettings;
         private EntityHelper<Patient> _entityHelper;
-        public Main()
+        public Mains()
         {
             InitializeComponent();
             _entitySettings = new EntitySettings<Patient>();
@@ -103,7 +103,7 @@ namespace SimpleProject
         }
         private void _toolStripButton_Add_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void _toolStripButton_Edit_Click(object sender, EventArgs e)
         {

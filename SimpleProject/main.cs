@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
-    public partial class main : Form
+    public partial class Main : Form
     {
         private EntitySettings<Patient> _entitySettings;
         private EntityHelper<Patient> _entityHelper;
-        public main()
+        public Main()
         {
             InitializeComponent();
             _entitySettings = new EntitySettings<Patient>();

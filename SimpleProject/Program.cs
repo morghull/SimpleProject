@@ -16,9 +16,8 @@ namespace SimpleProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new main());
-            Application.Run(new Imagesform());
-            //Application.Run(new FormWithListView());
+            Application.Run(new Main());
+            //Application.Run(new Imagesform());
         }
     }
 }

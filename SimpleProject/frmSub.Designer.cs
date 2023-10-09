@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSub));
             this._toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton_Ok = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton_No = new System.Windows.Forms.ToolStripButton();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,40 +45,44 @@
             this._toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this._toolStripButton_Ok,
+            this._toolStripButton_No});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
+            this._toolStrip.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this._toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._toolStrip.Size = new System.Drawing.Size(480, 38);
+            this._toolStrip.Size = new System.Drawing.Size(360, 31);
             this._toolStrip.TabIndex = 0;
             this._toolStrip.Text = "toolStrip";
             // 
-            // toolStripButton1
+            // _toolStripButton_Ok
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::SimpleProject.Properties.Resources._24px_png_ok;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 35);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this._toolStripButton_Ok.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._toolStripButton_Ok.Image = global::SimpleProject.Properties.Resources._24px_png_ok;
+            this._toolStripButton_Ok.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton_Ok.Name = "_toolStripButton_Ok";
+            this._toolStripButton_Ok.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_Ok.Text = "toolStripButton1";
             // 
-            // toolStripButton2
+            // _toolStripButton_No
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::SimpleProject.Properties.Resources._24px_png_no;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 35);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this._toolStripButton_No.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._toolStripButton_No.Image = global::SimpleProject.Properties.Resources._24px_png_no;
+            this._toolStripButton_No.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton_No.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+            this._toolStripButton_No.Name = "_toolStripButton_No";
+            this._toolStripButton_No.Size = new System.Drawing.Size(28, 28);
+            this._toolStripButton_No.Text = "toolStripButton2";
+            this._toolStripButton_No.Click += new System.EventHandler(this._toolStripButton_No_Click);
             // 
             // frmSub
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 377);
+            this.ClientSize = new System.Drawing.Size(361, 306);
             this.Controls.Add(this._toolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmSub";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Дочірнє вікно";
@@ -91,7 +95,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip _toolStrip;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton _toolStripButton_Ok;
+        private System.Windows.Forms.ToolStripButton _toolStripButton_No;
     }
 }

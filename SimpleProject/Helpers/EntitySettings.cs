@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SimpleProject.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace SimpleProject.Helpers
 {
-    public class EntitySettings<T>
+    public class EntitySettings<T> : IProperties
     {
         public string EntityName { get; set; }
         public string EntityPluralName { get; set; }
@@ -33,6 +34,21 @@ namespace SimpleProject.Helpers
                 var titleAttribute = (TitleAttribute)Attribute.GetCustomAttribute(property, typeof(TitleAttribute));
                 PropertiesTitles.Add(property.Name, titleAttribute.Title);
             }
+        }
+
+        public List<string> GetPropertiesNames()
+        {
+            return PropertiesNames;
+        }
+
+        public Dictionary<string, Type> GetPropretiesTypes()
+        {
+            return PropretiesTypes;
+        }
+
+        public Dictionary<string, string> GetPropertiesTitles()
+        {
+            return PropertiesTitles;
         }
     }
 }

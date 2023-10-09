@@ -9,7 +9,8 @@ namespace SimpleProject.Helpers
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     sealed class TitleAttribute : Attribute
     {
-        public string Title { get; }
+        //public string Title { get; }
+        public readonly string Title;
 
         public TitleAttribute(string title)
         {

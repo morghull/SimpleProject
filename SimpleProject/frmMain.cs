@@ -1,5 +1,6 @@
 ﻿using SimpleProject.DataObjects;
 using SimpleProject.Helpers;
+using SimpleProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -96,7 +97,8 @@ namespace SimpleProject
         }
         private void _toolStripButton_Add_Click(object sender, EventArgs e)
         {
-            frmSub subForm = new frmSub();
+            DataGridViewRow row = _dataGridView.SelectedRows[0];
+            frmSub subForm = new frmSub(row, _entitySettings);
             subForm.ShowDialog();
         }
         private void _toolStripButton_Edit_Click(object sender, EventArgs e)

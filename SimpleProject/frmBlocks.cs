@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace SimpleProject
             IDataInitializer<Movie> dataInitializer = new MoviesDataInitializer();
             _entityHelper = new EntityHelper<Movie>(_entitySettings, dataInitializer);
             _entityHelper.CreateInitialData();
+
+            CopyImages();
 
             List<Movie> movies = _entityHelper.GetDataAsList();
 
@@ -86,6 +89,24 @@ namespace SimpleProject
                 _flowLayoutPanel.Controls.Add(panel);
             }
 
+        }
+        private void CopyImages()
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+
+                string pathToDirWithImages = "../../Resources";
+                if (Directory.Exists(pathToDirWithImages))
+                {
+                    var images = Directory.GetFiles(pathToDirWithImages, "*.jpg");
+                    foreach (var image in images)
+                    {
+                        File.Copy(image, directoryPath + Path.GetFileName(image));
+                    }
+
+                }
+            }
         }
     }
 }

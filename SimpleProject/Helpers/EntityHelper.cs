@@ -65,9 +65,9 @@ namespace SimpleProject.Helpers
         {
             DataTable dataTable = new DataTable(_entitySettings.EntityName);
 
-            foreach (var propertySetting in _entitySettings.PropretiesTypes)
+            foreach (EntityPropertyOption propOption in _entitySettings.PropertiesOptions)
             {
-                dataTable.Columns.Add(propertySetting.Key, propertySetting.Value);
+                dataTable.Columns.Add(propOption.Name, propOption.Type);
             }
 
             foreach (var entity in entities)

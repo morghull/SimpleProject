@@ -62,7 +62,8 @@
             this._toolStripButton_Ok.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolStripButton_Ok.Name = "_toolStripButton_Ok";
             this._toolStripButton_Ok.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_Ok.Text = "toolStripButton1";
+            this._toolStripButton_Ok.Text = "Підтвердити";
+            this._toolStripButton_Ok.Click += new System.EventHandler(this._toolStripButton_Ok_Click);
             // 
             // _toolStripButton_No
             // 
@@ -72,7 +73,8 @@
             this._toolStripButton_No.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this._toolStripButton_No.Name = "_toolStripButton_No";
             this._toolStripButton_No.Size = new System.Drawing.Size(28, 28);
-            this._toolStripButton_No.Text = "toolStripButton2";
+            this._toolStripButton_No.Text = "Вийти";
+            this._toolStripButton_No.ToolTipText = "Вийти";
             this._toolStripButton_No.Click += new System.EventHandler(this._toolStripButton_No_Click);
             // 
             // frmSub
@@ -81,8 +83,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(361, 306);
             this.Controls.Add(this._toolStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmSub";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Дочірнє вікно";

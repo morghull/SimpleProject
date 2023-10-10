@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace SimpleProject.Helpers
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-    sealed class TitleAttribute : Attribute
+    sealed class OptionsAttribute : Attribute
     {
-        //public string Title { get; }
         public readonly string Title;
-
-        public TitleAttribute(string title)
+        public bool IsMultiline { get; set; }
+        public OptionsAttribute(string title)
         {
             Title = title;
         }

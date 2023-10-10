@@ -6,14 +6,12 @@ using System.Runtime.InteropServices;
 
 namespace SimpleProject.Helpers
 {
-    public class EntitySettings<T> : IProperties
+    public class EntitySettings<T> : IPropertiesOption
     {
         public string EntityName { get; set; }
         public string EntityPluralName { get; set; }
         public string XmlFilePath { get; set; }
-        public Dictionary<string, Type> PropretiesTypes { get; set; }
-        public List<string> PropertiesNames { get; set; }
-        public Dictionary<string, string> PropertiesTitles { get; set; }
+        public List<EntityPropertyOption> PropertiesOptions { get; set; }
         public EntitySettings()
         {
             Type entityType = typeof(T);
@@ -21,34 +19,19 @@ namespace SimpleProject.Helpers
             EntityName = entityType.Name;
             EntityPluralName = NounHelper.GetPluralForm(EntityName);
             XmlFilePath = String.Format(@"./{0}.xml", EntityPluralName);
-            PropretiesTypes = new Dictionary<string, Type>();
-            PropertiesNames = new List<string>();
-            PropertiesTitles = new Dictionary<string, string>();
+            PropertiesOptions = new List<EntityPropertyOption>();
 
             PropertyInfo[] properties = entityType.GetProperties();
 
             foreach (PropertyInfo property in properties)
             {
-                PropretiesTypes.Add(property.Name, property.PropertyType);
-                PropertiesNames.Add(property.Name);
-                var titleAttribute = (TitleAttribute)Attribute.GetCustomAttribute(property, typeof(TitleAttribute));
-                PropertiesTitles.Add(property.Name, titleAttribute.Title);
+                var titleAttribute = (OptionsAttribute)Attribute.GetCustomAttribute(property, typeof(OptionsAttribute));
+                PropertiesOptions.Add(new EntityPropertyOption(property.Name, titleAttribute.Title, property.PropertyType, titleAttribute.IsMultiline));
             }
         }
-
-        public List<string> GetPropertiesNames()
+        public List<EntityPropertyOption> GetPropertiesOptions()
         {
-            return PropertiesNames;
-        }
-
-        public Dictionary<string, Type> GetPropretiesTypes()
-        {
-            return PropretiesTypes;
-        }
-
-        public Dictionary<string, string> GetPropertiesTitles()
-        {
-            return PropertiesTitles;
+            return PropertiesOptions;
         }
     }
 }

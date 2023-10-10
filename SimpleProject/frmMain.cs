@@ -33,28 +33,17 @@ namespace SimpleProject
             _dataGridView.RowHeadersVisible = false;
             _dataGridView.AllowUserToResizeRows = false;
             _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            if (_entitySettings.PropertiesTitles.Count == _entitySettings.PropertiesNames.Count)
+            foreach (EntityPropertyOption propOption in _entitySettings.PropertiesOptions)
             {
-                for (int i = 0; i < _entitySettings.PropertiesTitles.Count; i++)
-                {
-                    string propertyName = _entitySettings.PropertiesNames[i];
-                    string propertyTitle = _entitySettings.PropertiesTitles[propertyName];
-                    Type propertyType = _entitySettings.PropretiesTypes[propertyName];
-                    DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-                    cellStyle.Format = (propertyType == typeof(DateTime)) ? "d" : "";
-
-                    _dataGridView.Columns.Add(
-                        new DataGridViewTextBoxColumn()
-                        {
-                            Name = propertyName,
-                            HeaderText = propertyTitle,
-                            DefaultCellStyle = cellStyle
-                        });
-                }
-            }
-            else
-            {
-                throw new Exception("Some issue with user defined settings. Check your code");
+                DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+                cellStyle.Format = (propOption.Type == typeof(DateTime)) ? "d" : "";
+                _dataGridView.Columns.Add(
+                    new DataGridViewTextBoxColumn()
+                    {
+                        Name = propOption.Name,
+                        HeaderText = propOption.Title,
+                        DefaultCellStyle = cellStyle
+                    });
             }
         }
         private void GetInitialData()
@@ -71,9 +60,9 @@ namespace SimpleProject
 
             _dataGridView.DataSource = bindingSource;
 
-            foreach (var propertyName in _entitySettings.PropertiesNames)
+            foreach (EntityPropertyOption propOption in _entitySettings.PropertiesOptions)
             {
-                _dataGridView.Columns[propertyName].DataPropertyName = propertyName;
+                _dataGridView.Columns[propOption.Name].DataPropertyName = propOption.Name;
             }
 
             _dataGridView.Columns[0].Width = 100;
@@ -97,13 +86,40 @@ namespace SimpleProject
         }
         private void _toolStripButton_Add_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = _dataGridView.SelectedRows[0];
-            frmSub subForm = new frmSub(row, _entitySettings);
+            BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;
+            DataTable dataTable = (DataTable)bindingSource.DataSource;
+            DataRow newRow = dataTable.NewRow();
+
+            List<EntityPropertyOption> datePropOptions = _entitySettings.PropertiesOptions.FindAll((propOption) => { return propOption.Type == typeof(DateTime); });
+            foreach (var propOption in datePropOptions)
+            {
+                newRow[propOption.Name] = new DateTime(1900, 1, 1);
+            }
+            List<EntityPropertyOption> intPropOptions = _entitySettings.PropertiesOptions.FindAll((propOption) => { return propOption.Type == typeof(int); });
+            foreach (var propOption in intPropOptions)
+            {
+                newRow[propOption.Name] = 0;
+            }
+
+            frmSub subForm = new frmSub(FormOpenMode.Add, dataTable, newRow, _entitySettings);
             subForm.ShowDialog();
         }
         private void _toolStripButton_Edit_Click(object sender, EventArgs e)
         {
+            BindingSource bindingSource = (BindingSource)_dataGridView.DataSource;
+            DataTable dataTable = (DataTable)bindingSource.DataSource;
 
+
+            DataGridViewSelectedRowCollection selectedRows = _dataGridView.SelectedRows;
+            if (selectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = selectedRows[0];
+                DataRowView selectedRowView = (DataRowView)selectedRow.DataBoundItem;
+                DataRow selectedDataRow = selectedRowView.Row;
+
+                frmSub subForm = new frmSub(FormOpenMode.Edit, dataTable, selectedDataRow, _entitySettings);
+                subForm.ShowDialog();
+            }
         }
         private void _toolStripButton_Delete_Click(object sender, EventArgs e)
         {

@@ -5,15 +5,15 @@ namespace SimpleProject.DataObjects
 {
     public class Patient
     {
-        [Title("Ім'я")]
+        [Options("Ім'я")]
         public string FirstName { get; set; }
-        [Title("Прізвище")]
+        [Options("Прізвище")]
         public string LastName { get; set; }
-        [Title("Дата народження")]
+        [Options("Дата народження")]
         public DateTime Birthday { get; set; }
-        [Title("Номер палати")]
+        [Options("Номер палати")]
         public int RoomNo { get; set; }
-        [Title("Домашня адреса")]
+        [Options("Домашня адреса", IsMultiline = true)]
         public string HomeAdress { get; set; }
         public Patient() { }
         public Patient(string firstName, string lastName, DateTime birthday, int roomNo, string homeAdress)

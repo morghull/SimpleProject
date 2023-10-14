@@ -12,12 +12,14 @@ namespace SimpleProject.Helpers
         public string Title { get; set; }
         public Type Type { get; set; }
         public bool IsMultiline { get; set; }
-        public EntityPropertyOption(string name, string title, Type type, bool isMultiline)
+        public int ColumnWidth { get; set; }
+        public EntityPropertyOption(string name, string title, Type type, bool isMultiline, int columnWidth)
         {
             this.Name = name;
             this.Title = title;
             this.Type = type;
             this.IsMultiline = isMultiline;
+            this.ColumnWidth = columnWidth;
         }
     }
 }

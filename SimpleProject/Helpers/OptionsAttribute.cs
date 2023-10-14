@@ -11,6 +11,7 @@ namespace SimpleProject.Helpers
     {
         public readonly string Title;
         public bool IsMultiline { get; set; }
+        public int ColumnWidth { get; set; }
         public OptionsAttribute(string title)
         {
             Title = title;

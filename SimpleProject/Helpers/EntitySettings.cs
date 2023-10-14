@@ -25,8 +25,14 @@ namespace SimpleProject.Helpers
 
             foreach (PropertyInfo property in properties)
             {
-                var titleAttribute = (OptionsAttribute)Attribute.GetCustomAttribute(property, typeof(OptionsAttribute));
-                PropertiesOptions.Add(new EntityPropertyOption(property.Name, titleAttribute.Title, property.PropertyType, titleAttribute.IsMultiline));
+                var optionsAttribute = (OptionsAttribute)Attribute.GetCustomAttribute(property, typeof(OptionsAttribute));
+                PropertiesOptions.Add(new EntityPropertyOption(
+                    property.Name,
+                    optionsAttribute.Title,
+                    property.PropertyType,
+                    optionsAttribute.IsMultiline,
+                    optionsAttribute.ColumnWidth
+                    ));
             }
         }
         public List<EntityPropertyOption> GetPropertiesOptions()

@@ -9,13 +9,13 @@ namespace SimpleProject.DataObjects
 {
     public class Movie
     {
-        [Options("Назва")]
+        [Options("Назва", ColumnWidth = 150)]
         public string Name { get; set; }
-        [Options("Назва мовою оригіналу")]
+        [Options("Назва мовою оригіналу", ColumnWidth = 180)]
         public string OriginalName { get; set; }
-        [Options("Дата релізу")]
+        [Options("Дата релізу", ColumnWidth = 100)]
         public DateTime ReleaseDate { get; set; }
-        [Options("Ім'я файлу постеру")]
+        [Options("Ім'я файлу постеру", ColumnWidth = 200)]
         public string PosterImageName { get; set; }
         public Movie() { }
         public Movie(string name, string originalName, DateTime releaseDate, string posterImageName)

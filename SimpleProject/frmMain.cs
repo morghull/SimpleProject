@@ -8,10 +8,13 @@ using System.Windows.Forms;
 
 namespace SimpleProject
 {
+    /// <summary>
+    /// головна форма проекту
+    /// </summary>
     public partial class frmMain : Form
     {
-        private EntitySettings<Patient> _entitySettings;
-        private EntityHelper<Patient> _entityHelper;
+        private EntitySettings<Patient> _entitySettings; //налаштування "сутності"
+        private EntityHelper<Patient> _entityHelper; //хелпер "сутності"
         /// <summary>
         /// головний метод форми. ініціює форму
         /// також тут створюємо екземпляри класів налаштування та хелпера для нашої "сутності"

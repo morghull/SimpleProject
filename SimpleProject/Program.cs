@@ -9,14 +9,17 @@ namespace SimpleProject
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// Головна программа додатку
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();//системний метод, створюється за замовчуванням з файлом проекту
+            Application.SetCompatibleTextRenderingDefault(false);//системний метод, створюється за замовчуванням з файлом проекту
+            // Запуск головної форми
             Application.Run(new frmMain());
+
+            // Також можете подивитись іншу форму з блоками
             //Application.Run(new frmBlocks());
         }
     }

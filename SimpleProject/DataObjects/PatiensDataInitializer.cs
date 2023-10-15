@@ -5,8 +5,17 @@ using System.Collections.Generic;
 
 namespace SimpleProject.Helpers
 {
+    /// <summary>
+    /// відповідає за створення початкових значень для сутності Пацієнт
+    /// реалізує інтерфейс IDataInitializer, щоб ми потім могли використовувати
+    /// його методи не прив'язуючись до первної реалізації
+    /// </summary>
     public class PatiensDataInitializer : IDataInitializer<Patient>
     {
+        /// <summary>
+        /// створення початкових даних 
+        /// </summary>
+        /// <returns>колекцію об'єктів сутності Пацієнт з початковими значеннями властивостей</returns>
         public List<Patient> GetInitialEntitiesList()
         {
             List<Patient> entities = new List<Patient>();

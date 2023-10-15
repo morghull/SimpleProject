@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimpleProject.Helpers
 {
+    /// <summary>
+    /// перелічення використовується у вигляді констант для режимів відкриття форми
+    /// на редагування чи додання запису
+    /// </summary>
     public enum FormOpenMode
     {
         Add,

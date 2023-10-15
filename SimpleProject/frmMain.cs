@@ -85,7 +85,7 @@ namespace SimpleProject
 
             _dataGridView.DataSource = bindingSource;//прив'язка джерела до гріда
 
-            //прив'язка проперті даних до колонок гріда
+            //прив'язка властивостей даних до колонок гріда
             foreach (EntityPropertyOption propOption in _entitySettings.PropertiesOptions)
             {
                 _dataGridView.Columns[propOption.Name].DataPropertyName = propOption.Name;

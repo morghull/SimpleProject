@@ -3,6 +3,14 @@ using System;
 
 namespace SimpleProject.DataObjects
 {
+    //приклад створення класу для обєктів умовних "пацієнтів"
+    //концепція така: є сутність Пацієнт, він має певні властивості(property)
+    //кожній властивості сутності відповідає властивість класу
+    //що надалі буде зберігати значення цих властивостей первного типу
+    //за допомогою класу для кастомного анотацій для властивостей
+    //ми визначаємо додаткові так звані "опції" для властивостей
+    //це - заголовок, ширина стовпця для гріду відображення
+    //та булеве значення - чи властивість класу містить довгий текст (чи потрібно розширяти поле вводу цього тексту)
     public class Patient
     {
         [Options("Ім'я", ColumnWidth = 100)]
@@ -15,7 +23,18 @@ namespace SimpleProject.DataObjects
         public int RoomNo { get; set; }
         [Options("Домашня адреса", ColumnWidth = 100, IsMultiline = true)]
         public string HomeAdress { get; set; }
+        /// <summary>
+        /// метод-конструктор без параметрів
+        /// </summary>
         public Patient() { }
+        /// <summary>
+        /// метод-конструктор з початковими значеннями властивостей
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="birthday"></param>
+        /// <param name="roomNo"></param>
+        /// <param name="homeAdress"></param>
         public Patient(string firstName, string lastName, DateTime birthday, int roomNo, string homeAdress)
         {
             FirstName = firstName;

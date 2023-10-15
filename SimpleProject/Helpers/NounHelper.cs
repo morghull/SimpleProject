@@ -2,6 +2,11 @@
 {
     public static class NounHelper
     {
+        /// <summary>
+        /// статичний метод для отримання множини для іменника відповідно до правил англійської мови
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         public static string GetPluralForm(string word)
         {
             if (string.IsNullOrEmpty(word))
@@ -22,6 +27,11 @@
                 return word + "s"; // Add "s" for most other words
             }
         }
+        /// <summary>
+        /// статичний метод для перевірки чи є буква голосною
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private static bool IsVowel(char c)
         {
             // Check if a character is a vowel (in this simple example, we consider 'y' as a consonant)

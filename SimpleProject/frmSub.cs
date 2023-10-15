@@ -14,7 +14,7 @@ namespace SimpleProject
     public partial class frmSub : Form
     {
         private FormOpenMode _openMode; //режим відкриття форми
-        private DataTable _dataTable; //таблиця що редагується, використовується для щбереження даних
+        private DataTable _dataTable; //таблиця що редагується, використовується для збереження даних
         private DataRow _dataRow; //рядок з даними
         private List<EntityPropertyOption> _propOptions; //налаштування
 
@@ -37,8 +37,8 @@ namespace SimpleProject
             _dataRow = dataRow;
             _propOptions = properties.GetPropertiesOptions(); //отримуємо налаштування
 
-            //тут концепція така: динамічно створюються елементи на формі під кожний параметр класу "сутності"
-            //для кожного параметру створюється блок Panel шириною у всю форму
+            //тут концепція така: динамічно створюються елементи на формі під кожна властивість класу "сутності"
+            //для кожної властивості створюється блок Panel шириною у всю форму
             //ці блоки розмішаються в стовчик один під одним
             //у кожному блоку створюється заголовок Label, та контрол для даних, в залежності від типу
             //контроли можуть бути наступні: TextBox для тексту, NumericUpDown для чисел, DateTimePicker для дати

@@ -5,8 +5,17 @@ using System.Collections.Generic;
 
 namespace SimpleProject.Helpers
 {
+    /// <summary>
+    /// відповідає за створення початкових значень для сутності Фільм
+    /// реалізує інтерфейс IDataInitializer, щоб ми потім могли використовувати
+    /// його методи не прив'язуючись до первної реалізації
+    /// </summary>
     public class MoviesDataInitializer : IDataInitializer<Movie>
     {
+        /// <summary>
+        /// створення початкових даних 
+        /// </summary>
+        /// <returns>колекцію об'єктів сутності Фільм з початковими значеннями властивостей</returns>
         public List<Movie> GetInitialEntitiesList()
         {
             List<Movie> entities = new List<Movie>

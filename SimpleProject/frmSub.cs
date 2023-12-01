@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using SimpleProject.Interfaces;
+using SimpleProject.Controls;
 
 namespace SimpleProject
 {
@@ -64,10 +65,10 @@ namespace SimpleProject
                 //створення заголовку
                 Label label = new Label() { Text = propOption.Title };
                 label.TextAlign = ContentAlignment.TopRight;
-                label.Top = 2;
+                label.Top = 5;
                 label.Width = 110;
                 label.Height = 40;
-                //label.ForeColor = Color.White; //можна розкоментувати для того щоб видно було як блоки розміщаються
+                label.ForeColor = Color.White; //можна розкоментувати для того щоб видно було як блоки розміщаються
                 panel.Controls.Add(label);// додаємо щаголовок до контейнеру
 
                 //в залежності від типу властивості "сутності" створюємо той чи інший контрол
@@ -78,6 +79,8 @@ namespace SimpleProject
                     TextBox textBox = new TextBox();
                     textBox.Text = dataRow[propOption.Name].ToString();
 
+                    textBox.Width = (int)(this.Width * 0.3);
+
                     if (propOption.IsMultiline)//якщо текст у нас довгий, то робимо текстове поле більшим
                     {
                         textBox.Multiline = true;
@@ -87,15 +90,21 @@ namespace SimpleProject
 
                     dataControl = textBox;
                 }
-                else if (dataType == typeof(int))//для чисел
+                else if (dataType == typeof(int))//для цілих чисел
                 {
                     NumericUpDown numericUpDown = new NumericUpDown();
                     numericUpDown.Minimum = 0;
                     numericUpDown.Maximum = 99999;
                     numericUpDown.Value = (int)dataRow[propOption.Name];
 
-
                     dataControl = numericUpDown;
+                }
+                else if (dataType == typeof(decimal))//для дробових чисел
+                {
+                    NumericTextBox numericTextBox = new NumericTextBox();
+                    numericTextBox.Text = dataRow[propOption.Name].ToString();
+
+                    dataControl = numericTextBox;
                 }
                 else if (dataType == typeof(DateTime))//для дати
                 {
@@ -108,7 +117,7 @@ namespace SimpleProject
                 if (dataControl != null)
                 {
                     dataControl.Left = label.Width + 5;//позиціювання
-                    dataControl.Top = 0;//позиціювання
+                    dataControl.Top = 3;//позиціювання
                     _dataControls.Add(propOption, dataControl); //зберігаємо наш контрол у колекцію, це знадобиться потім для отримання змінених користувачем даних
                     panel.Controls.Add(dataControl);//додаємо контрол до контейнеру
                 }
@@ -141,9 +150,13 @@ namespace SimpleProject
                 {
                     _dataRow[propOption.Name] = ((DateTimePicker)control).Value;
                 }
-                else if (dataType == typeof(int))//якщо число
+                else if (dataType == typeof(int))//якщо ціле число
                 {
                     _dataRow[propOption.Name] = ((NumericUpDown)control).Value;
+                }
+                else if (dataType == typeof(decimal))//якщо ціле число
+                {
+                    _dataRow[propOption.Name] = ((NumericTextBox)control).DecimalValue;
                 }
             }
             //окремий випадок для нового рядка

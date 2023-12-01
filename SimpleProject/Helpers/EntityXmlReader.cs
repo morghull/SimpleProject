@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 
 namespace SimpleProject.Helpers
@@ -62,7 +63,7 @@ namespace SimpleProject.Helpers
             if (propertyInfo != null)
             {
                 Type propertyType = propertyInfo.PropertyType;//отримати тип властивості
-                object typedValue = Convert.ChangeType(propertyValue, propertyType);//конвертація данних
+                object typedValue = Convert.ChangeType(propertyValue, propertyType, CultureInfo.InvariantCulture);//конвертація данних
                 propertyInfo.SetValue(entity, typedValue);//наповнення данними властивості об'єкту сутності
             }
         }

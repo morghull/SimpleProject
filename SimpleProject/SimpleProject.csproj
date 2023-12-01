@@ -8,8 +8,8 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleProject</RootNamespace>
-    <AssemblyName>SimpleProject</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AssemblyName>Pharmacy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>main5.ico</ApplicationIcon>
+    <ApplicationIcon>pharmacy-logo-3.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,8 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NumericTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DataObjects\Movie.cs" />
     <Compile Include="DataObjects\Patient.cs" />
+    <Compile Include="DataObjects\Pharm.cs" />
+    <Compile Include="DataObjects\PharmDataInitializer.cs" />
     <Compile Include="Helpers\EntityHelper.cs" />
     <Compile Include="Helpers\EntityPropertyOption.cs" />
     <Compile Include="Helpers\EntitySettings.cs" />
@@ -166,6 +171,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="main5.ico" />
+    <Content Include="pharmacy-logo-3.ico" />
+    <None Include="Resources\54px_exit.png" />
+    <None Include="Resources\54px_refresh.png" />
+    <None Include="Resources\54px_save.png" />
+    <None Include="Resources\54px_remove.png" />
+    <None Include="Resources\54px_edit.png" />
+    <None Include="Resources\54px_add.png" />
+    <None Include="Resources\bg-2.jpeg" />
+    <None Include="Resources\bg-1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

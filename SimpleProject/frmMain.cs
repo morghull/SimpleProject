@@ -13,8 +13,8 @@ namespace SimpleProject
     /// </summary>
     public partial class frmMain : Form
     {
-        private EntitySettings<Patient> _entitySettings; //налаштування "сутності"
-        private EntityHelper<Patient> _entityHelper; //хелпер "сутності"
+        private EntitySettings<Pharm> _entitySettings; //налаштування "сутності"
+        private EntityHelper<Pharm> _entityHelper; //хелпер "сутності"
         /// <summary>
         /// головний метод форми. ініціює форму
         /// також тут створюємо екземпляри класів налаштування та хелпера для нашої "сутності"
@@ -26,10 +26,11 @@ namespace SimpleProject
         public frmMain()
         {
             InitializeComponent();
-            _entitySettings = new EntitySettings<Patient>(); //містить налаштування "сутності"
-            PatiensDataInitializer dataInitializer = new PatiensDataInitializer(); //використовується для створення початкових даних
+            _entitySettings = new EntitySettings<Pharm>(); //містить налаштування "сутності"
+            PharmDataInitializer dataInitializer = new PharmDataInitializer(); //використовується для створення початкових даних
+            //PatiensDataInitializer dataInitializer = new PatiensDataInitializer(); //використовується для створення початкових даних
             //MoviesDataInitializer dataInitializer = new MoviesDataInitializer();
-            _entityHelper = new EntityHelper<Patient>(_entitySettings, dataInitializer); //використовується для маніпуляції з даними
+            _entityHelper = new EntityHelper<Pharm>(_entitySettings, dataInitializer); //використовується для маніпуляції з даними
 
             DataGridViewSetup();
             GetInitialData();
@@ -47,7 +48,13 @@ namespace SimpleProject
             _dataGridView.AllowUserToAddRows = false;//також для заборони редагування
             _dataGridView.RowHeadersVisible = false;//приховує заголовки рядків
             _dataGridView.AllowUserToResizeRows = false;//забороняє міняти висоту рядка у гріді
-            _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;//встановлення кольору для парних рядків
+            _dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGreen;//встановлення кольору для парних рядків
+            _dataGridView.BackgroundColor = Color.PaleGreen;
+            _dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10f);
+            _dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            _dataGridView.RowTemplate.DefaultCellStyle.Font = new Font("Arial", 8f);
+
             foreach (EntityPropertyOption propOption in _entitySettings.PropertiesOptions)
             {
                 DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
